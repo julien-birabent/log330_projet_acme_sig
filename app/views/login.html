@@ -1,21 +1,24 @@
-<!doctype html>
-<html>
-    <head>
-        <title>Connexion</title>
-	</head>
-	<body>
-		<div ng-controller="loginCtrl>
-			<div>
-				<label for="email">Courriel :</label>
-				<input type="text" id="email" name="email" />
-			</div>
-			<div>
-				<label for="pwd">Mot de passe :</label>
-				<input type="text" id="pwd" name="pwd" />
-			</div>
-			<div>
-				<input type="submit" value="Se connecter" />
-			</div>
-		</div>
-	</body>
-</html>
+<form action="authentification.php">
+  <div>
+    <label for="email">Courriel :</label>
+    <input type="text" id="email" name="email" />
+  </div>
+  <div>
+    <label for="pwd">Mot de passe :</label>
+    <input type="text" id="pwd" name="pwd" />
+  </div>
+  <div>
+    <input type="button" value="Se connecter" onclick="onSubmit" />
+  </div>
+</form>
+<script>
+  function OnSubmit(){
+    $.ajax({
+      type: "POST",
+      url: "authentification.php",
+      data: $(this).serialize(), // Fabrique la "query string" contenant les deux nombres
+      success: OnSuccess // Callback qui récupère la réponse du serveur
+    });
+    return false; // Annule l'envoi classique du formulaire
+  }
+</script>
