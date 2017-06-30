@@ -1,0 +1,41 @@
+<div ng-controller="accountCtrl">
+  <p>Votre espace personnel</p>
+  <section>
+    <p>Créer un trajet</p>
+    <div>
+      <label for="camionId">Identifiant du camion :</label>
+      <select id="camionId">
+        <option>RGB 255</option>
+        <option>HRE 225</option>
+        <option>IUH 367</option>
+        <option>AQW 090</option>
+        <option>BNM 653</option>
+      </select>
+    </div>
+    <div>
+      <label for="datePrevue">Date prévue :</label>
+      <input type="date" />
+    </div>
+    <div>
+      <input type="submit" value="Créer un trajet" />
+    </div>
+  </section>
+  <hr/>
+  <section>
+    <p>Liste des trajets</p>
+    <table id="trajets">
+      <tr>
+        <th></th>
+        <th>Identifiant du camion</th>
+        <th>Date prévue</th>
+        <th>Dernière modification</th>
+      </tr>
+      <tr>
+        <td>Ouvrir</td>
+        <td>RGB 255</td>
+        <td>2002-02-02</td>
+        <td>2002-03-03</td>
+      </tr>
+    </table>
+  </section>
+</div>

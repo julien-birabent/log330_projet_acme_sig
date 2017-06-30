@@ -18,7 +18,6 @@ angular
     'ngTouch'
   ])
   .config(function ($routeProvider) {
-    console.log($routeProvider);
     $routeProvider
       .when('/', {
         templateUrl: 'views/login.html'

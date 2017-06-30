@@ -1,3 +1,14 @@
+/* Pas par défaut */
+#trajets {
+  border-collapse: collapse;
+}
+
+#trajets th,
+#trajets td {
+  border: 1px solid black;
+}
+
+
 .browsehappy {
   margin: 0.2em 0;
   background: #ccc;
