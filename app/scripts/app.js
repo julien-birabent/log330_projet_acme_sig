@@ -8,7 +8,7 @@
  *
  * Main module of the application.
  */
-angular
+var app = angular
   .module('log330ProjetAcmeSigApp', [
     'ngAnimate',
     'ngCookies',
@@ -22,10 +22,11 @@ angular
       .when('/', {
         templateUrl: 'views/login.html'
       })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl',
-        controllerAs: 'about'
+      .when('/registration', {
+        templateUrl: 'views/registration.html'
+      })
+      .when('/account', {
+        templateUrl: 'views/account.html'
       })
       .otherwise({
         //templateUrl: 'iews/login.html'

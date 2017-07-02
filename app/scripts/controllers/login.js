@@ -7,11 +7,34 @@
  * # loginCtrl
  * Controller of the log330ProjetAcmeSigApp
  */
-angular.module('log330ProjetAcmeSigApp')
-  .controller('loginCtrl', function () {
+app.controller('loginCtrl', function ($scope, $http, $location, distributeur) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
+
+    $scope.email = "";
+    $scope.password = "";
+    $scope.error = "";
+    $scope.connectionFailed = false;
+    $scope.url = $location.absUrl();
+
+    $scope.authentification = function() {
+      var data = {
+        "email": $scope.email,
+        "password": $scope.password
+      };
+
+      $http.post("scripts/authentification.php", data)
+        .then(function(response) {
+          if (response.data.length > 0) {
+            distributeur.setId(response.data[0][0]);
+            $location.url('account');
+          } else {
+            $scope.error = "Le courriel ou le mot de passe est invalide!";
+            $scope.connectionFailed = true;
+          }
+        });
+    };
   });

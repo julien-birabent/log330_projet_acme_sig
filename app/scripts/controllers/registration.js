@@ -7,11 +7,41 @@
  * # registrationCtrl
  * Controller of the log330ProjetAcmeSigApp
  */
-angular.module('log330ProjetAcmeSigApp')
-  .controller('registrationCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  });
+app.controller('registrationCtrl', function ($scope, $http, $location, distributeur) {
+  this.awesomeThings = [
+    'HTML5 Boilerplate',
+    'AngularJS',
+    'Karma'
+  ];
+
+  $scope.email = "";
+  $scope.password = "";
+  $scope.error = "";
+  $scope.fieldsError = false;
+
+  $scope.addDistributeur = function() {
+    if ($scope.email === "" || $scope.password === "") {
+      $scope.error = "Les deux champs doivent être remplis!";
+      $scope.fieldsError = true;
+      return;
+    }
+
+    console.log("allo");
+
+    var data = {
+      "email": $scope.email,
+      "password": $scope.password,
+    };
+
+    $http.post("scripts/addDistributeur.php", data)
+      .then(function(response) {
+        if (response.data == "true") {
+          alert("Votre compte vient d'être créé.");
+          $location.url('');
+        } else {
+          $scope.error = "Une erreur s'est produite lors de la création du compte!";
+          $scope.fieldsError = true;
+        }
+      });
+  };
+});

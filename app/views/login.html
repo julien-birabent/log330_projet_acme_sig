@@ -1,24 +1,15 @@
-<form action="authentification.php">
-  <div>
+<div ng-controller="loginCtrl">
+  <div class="groupInputs">
     <label for="email">Courriel :</label>
-    <input type="text" id="email" name="email" />
+    <input type="text" id="email" ng-model="email" />
+  </div>
+  <div class="groupInputs">
+    <label for="password">Mot de passe :</label>
+    <input type="password" id="password" ng-model="password" />
   </div>
   <div>
-    <label for="pwd">Mot de passe :</label>
-    <input type="text" id="pwd" name="pwd" />
+    <input type="button" value="Se connecter" ng-click="authentification()" />
   </div>
-  <div>
-    <input type="button" value="Se connecter" onclick="onSubmit" />
-  </div>
-</form>
-<script>
-  function OnSubmit(){
-    $.ajax({
-      type: "POST",
-      url: "authentification.php",
-      data: $(this).serialize(), // Fabrique la "query string" contenant les deux nombres
-      success: OnSuccess // Callback qui récupère la réponse du serveur
-    });
-    return false; // Annule l'envoi classique du formulaire
-  }
-</script>
+  <p class="error" ng-show="connectionFailed">{{error}}</p>
+  <p>Pas de compte, cliquez <a ng-href="{{url}}registration">ici</a> pour en créer un.</p>
+</div>

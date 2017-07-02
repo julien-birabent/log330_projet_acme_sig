@@ -1,21 +1,14 @@
-<!doctype html>
-<html>
-    <head>
-        <title>Inscription</title>
-	</head>
-	<body>
-		<div ng-controller="registerCtrl">
-			<div>
-				<label for="email">Courriel :</label>
-				<input type="text" id="email" name="email" />
-			</div>
-			<div>
-				<label for="pwd">Mot de passe :</label>
-				<input type="text" id="pwd" name="pwd" />
-			</div>
-			<div>
-				<input type="submit" value="S'inscrire" />
-			</div>
-		</div>
-	</body>
-</html>
+<div ng-controller="registrationCtrl">
+  <div class="groupInputs">
+    <label for="email">Courriel :</label>
+    <input type="text" id="email" ng-model="email" />
+  </div>
+  <div class="groupInputs">
+    <label for="password">Mot de passe :</label>
+    <input type="password" id="password" ng-model="password" />
+  </div>
+  <div>
+    <input type="button" value="S'inscrire" ng-click="addDistributeur()" />
+  </div>
+  <p class="error" ng-show="fieldsError">{{error}}</p>
+</div>
