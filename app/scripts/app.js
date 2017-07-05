@@ -28,6 +28,9 @@ var app = angular
       .when('/account', {
         templateUrl: 'views/account.html'
       })
+      .when('/account/trajet', {
+        templateUrl: 'views/trajet.html'
+      })
       .otherwise({
         //templateUrl: 'iews/login.html'
       });

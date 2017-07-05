@@ -7,7 +7,7 @@
  * # loginCtrl
  * Controller of the log330ProjetAcmeSigApp
  */
-app.controller('loginCtrl', function ($scope, $http, $location, distributeur) {
+app.controller('loginCtrl', function ($scope, $http, $location, session) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -29,7 +29,7 @@ app.controller('loginCtrl', function ($scope, $http, $location, distributeur) {
       $http.post("scripts/authentification.php", data)
         .then(function(response) {
           if (response.data.length > 0) {
-            distributeur.setId(response.data[0][0]);
+            session.setDistributeurId(response.data[0][0]);
             $location.url('account');
           } else {
             $scope.error = "Le courriel ou le mot de passe est invalide!";

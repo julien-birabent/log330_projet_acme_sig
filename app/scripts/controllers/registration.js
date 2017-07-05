@@ -26,8 +26,6 @@ app.controller('registrationCtrl', function ($scope, $http, $location, distribut
       return;
     }
 
-    console.log("allo");
-
     var data = {
       "email": $scope.email,
       "password": $scope.password,

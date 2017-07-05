@@ -1,14 +1,21 @@
 'use strict';
 
-angular.module('log330ProjetAcmeSigApp')
-  .service("distributeur", function(){
-    var id;
+app.service("session", function(){
+    var distributeurId, trajetId;
 
-    this.setId = function(_id){
-      id = _id;
+    this.setDistributeurId = function(id){
+      distributeurId = id;
     };
 
-    this.id = function(){
-      return id;
+    this.distributeurId = function(){
+      return distributeurId;
+    };
+
+    this.setTrajetId = function(id){
+      trajetId = id;
+    };
+
+    this.trajetId = function(){
+      return trajetId;
     };
   });
