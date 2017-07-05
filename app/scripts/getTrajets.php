@@ -1,7 +1,12 @@
 <?php
   require_once("connexion.php");
 
-  $result = pg_query($connection, "SELECT * FROM trajet;");
+  $query = "
+    SELECT * FROM trajet
+    ORDER BY \"dateDerniereEdition\" DESC, \"datePrevue\" DESC;
+  ";
+
+  $result = pg_query($connection, $query);
   $rangees = array();
 
   while($r = pg_fetch_row($result)) {

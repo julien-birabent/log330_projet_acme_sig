@@ -7,7 +7,7 @@
  * # registrationCtrl
  * Controller of the log330ProjetAcmeSigApp
  */
-app.controller('registrationCtrl', function ($scope, $http, $location, distributeur) {
+app.controller('registrationCtrl', function ($scope, $http, $location) {
   this.awesomeThings = [
     'HTML5 Boilerplate',
     'AngularJS',
