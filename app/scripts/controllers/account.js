@@ -25,7 +25,6 @@ angular.module('log330ProjetAcmeSigApp')
     $scope.datePrevue = "";
     $scope.error = "";
     $scope.fieldsError = false;
-    $scope.url = $location.absUrl();
 
     $scope.addTrajet = function() {
       if ($scope.datePrevue === "") {
@@ -43,7 +42,7 @@ angular.module('log330ProjetAcmeSigApp')
         .then(function(response) {
           if (response.data != "false") {
             session.setTrajetId(response.data[0][0]);
-            $location.url('/account/trajet');
+            $location.path('trajet/' + session.trajetId());
           } else {
             $scope.error = "Une erreur s'est produite lors de la création du trajet!";
             $scope.fieldsError = true;

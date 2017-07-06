@@ -35,7 +35,7 @@ app.controller('registrationCtrl', function ($scope, $http, $location) {
       .then(function(response) {
         if (response.data == "true") {
           alert("Votre compte vient d'être créé.");
-          $location.url('');
+          $location.path('login');
         } else {
           $scope.error = "Une erreur s'est produite lors de la création du compte!";
           $scope.fieldsError = true;

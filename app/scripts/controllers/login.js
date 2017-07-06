@@ -18,7 +18,6 @@ app.controller('loginCtrl', function ($scope, $http, $location, session) {
     $scope.password = "";
     $scope.error = "";
     $scope.connectionFailed = false;
-    $scope.url = $location.absUrl();
 
     $scope.authentification = function() {
       var data = {
@@ -30,7 +29,7 @@ app.controller('loginCtrl', function ($scope, $http, $location, session) {
         .then(function(response) {
           if (response.data.length > 0) {
             session.setDistributeurId(response.data[0][0]);
-            $location.url('account');
+            $location.path('account');
           } else {
             $scope.error = "Le courriel ou le mot de passe est invalide!";
             $scope.connectionFailed = true;

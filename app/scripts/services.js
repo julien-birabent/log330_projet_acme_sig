@@ -1,7 +1,8 @@
 'use strict';
 
-app.service("session", function(){
-    var distributeurId, trajetId;
+app.service("session", function($q){
+    var distributeurId = 0;
+    var trajetId = 0;
 
     this.setDistributeurId = function(id){
       distributeurId = id;
@@ -19,3 +20,17 @@ app.service("session", function(){
       return trajetId;
     };
   });
+
+/*
+app.service("accessControl", function(session, $q) {
+  return $q(function (resolve, reject) {
+      isUserConnected: function() {
+        if (true) {
+          resolve();
+        } else {
+          reject();
+        }
+      }
+  });
+}
+*/

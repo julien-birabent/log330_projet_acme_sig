@@ -17,9 +17,12 @@ var app = angular
     'ngSanitize',
     'ngTouch'
   ])
+  .config(['$locationProvider', function($locationProvider) {
+    $locationProvider.hashPrefix('');
+  }])
   .config(function ($routeProvider) {
     $routeProvider
-      .when('/', {
+      .when('/login', {
         templateUrl: 'views/login.html'
       })
       .when('/registration', {
@@ -28,10 +31,10 @@ var app = angular
       .when('/account', {
         templateUrl: 'views/account.html'
       })
-      .when('/account/trajet', {
+      .when('/trajet/:trajetId', {
         templateUrl: 'views/trajet.html'
       })
       .otherwise({
-        //templateUrl: 'iews/login.html'
+        templateUrl: 'views/login.html'
       });
   });
