@@ -19,6 +19,8 @@ app.controller('loginCtrl', function ($scope, $http, $location, session) {
     $scope.error = "";
     $scope.connectionFailed = false;
 
+    sessionStorage.clear();
+
     $scope.authentification = function() {
       var data = {
         "email": $scope.email,
@@ -28,7 +30,7 @@ app.controller('loginCtrl', function ($scope, $http, $location, session) {
       $http.post("scripts/authentification.php", data)
         .then(function(response) {
           if (response.data.length > 0) {
-            session.setDistributeurId(response.data[0][0]);
+            sessionStorage.setItem('distributeurId', response.data[0][0]);
             $location.path('account');
           } else {
             $scope.error = "Le courriel ou le mot de passe est invalide!";

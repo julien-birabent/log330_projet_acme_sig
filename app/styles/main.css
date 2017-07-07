@@ -1,4 +1,19 @@
 /* Pas par défaut */
+.container {
+  width:95%;
+  margin: 0 auto;
+}
+
+form {
+  width:350px;
+  margin-bottom: 50px;
+}
+
+td {
+  width: 110px;
+  padding:3px;
+}
+
 #trajets {
   border-collapse: collapse;
 }
@@ -13,8 +28,16 @@
 }
 
 .groupInputs label {
-  width: 100px;
+  display: inline-block;
+  margin-bottom: 10px;
+  width: 150px;
 }
+
+#deconnect {
+  text-align: right;
+}
+
+
 
 .browsehappy {
   margin: 0.2em 0;
@@ -80,7 +103,7 @@ body {
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
   .container {
-    max-width: 730px;
+    /*max-width: 730px;*/
   }
 
   /* Remove the padding we set earlier */

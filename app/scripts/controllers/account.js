@@ -15,6 +15,8 @@ angular.module('log330ProjetAcmeSigApp')
       'Karma'
     ];
 
+    session.isAuthentified();
+
     $scope.trajets = [];
 
     $http.post("scripts/getTrajets.php")
@@ -41,8 +43,7 @@ angular.module('log330ProjetAcmeSigApp')
       $http.post("scripts/addTrajet.php", data)
         .then(function(response) {
           if (response.data != "false") {
-            session.setTrajetId(response.data[0][0]);
-            $location.path('trajet/' + session.trajetId());
+            $location.path('trajet/' + response.data[0][0]);
           } else {
             $scope.error = "Une erreur s'est produite lors de la création du trajet!";
             $scope.fieldsError = true;

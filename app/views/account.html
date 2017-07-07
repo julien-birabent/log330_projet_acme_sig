@@ -1,49 +1,55 @@
 <div ng-controller="accountCtrl">
-  <p>Votre espace personnel</p>
-  <section>
-    <p>Créer un trajet</p>
-    <div>
-      <label for="camionId">Identifiant du camion :</label>
-      <select id="camionId" ng-model="camionId" ng-init="camionId='RGB 255'">
-        <option value="RGB 255">RGB 255</option>
-        <option value="HRE 225">HRE 225</option>
-        <option value="IUH 367">IUH 367</option>
-        <option value="AQW 090">AQW 090</option>
-        <option value="BNM 653">BNM 653</option>
-      </select>
-    </div>
-    <div>
-      <label for="datePrevue">Date prévue :</label>
-      <input type="date" id="datePrevue" ng-model="datePrevue" />
-    </div>
-    <div>
-      <input type="button" value="Créer un trajet" ng-click="addTrajet()" />
-    </div>
-    <p class="error" ng-show="fieldsError">{{error}}</p>
-  </section>
-  <hr/>
-  <section>
-    <p>Liste des trajets</p>
-    <div ng-switch="trajets.length">
-      <div ng-switch-when="0">
-        Il n'y a pas de trajets.
+  <div id="deconnect">
+    <a href="#/">Se déconnecter</a>
+  </div>
+  <div>
+    <p>Votre espace personnel</p>
+    <section>
+      <form>
+        <fieldset>
+          <legend>Créer un trajet</legend>
+          <div class="groupInputs">
+            <label for="camionId">Identifiant du camion :</label>
+            <select id="camionId" ng-model="camionId" ng-init="camionId='RGB 255'">
+              <option value="RGB 255">RGB 255</option>
+              <option value="HRE 225">HRE 225</option>
+              <option value="IUH 367">IUH 367</option>
+              <option value="AQW 090">AQW 090</option>
+              <option value="BNM 653">BNM 653</option>
+            </select>
+          </div>
+          <div class="groupInputs">
+            <label for="datePrevue">Date prévue :</label>
+            <input type="date" id="datePrevue" ng-model="datePrevue" />
+          </div>
+          <input type="button" value="Créer un trajet" ng-click="addTrajet()" />
+          <p class="error" ng-show="fieldsError">{{error}}</p>
+        </fieldset>
+      </form>
+    </section>
+    <section>
+      <p>Liste des trajets</p>
+      <div ng-switch="trajets.length">
+        <div ng-switch-when="0">
+          Il n'y a pas de trajets.
+        </div>
+        <div ng-switch-default>
+          <table id="trajets">
+            <tr>
+              <th></th>
+              <th>Identifiant du camion</th>
+              <th>Date prévue</th>
+              <th>Dernière modification</th>
+            </tr>
+            <tr ng-repeat="tr in trajets">
+              <td><a href="#/trajet/{{tr[0]}}">Ouvrir</a></td>
+              <td>{{tr[4]}}</td>
+              <td>{{tr[1]}}</td>
+              <td>{{tr[2]}}</td>
+            </tr>
+          </table>
+        </div>
       </div>
-      <div ng-switch-default>
-        <table id="trajets">
-          <tr>
-            <th></th>
-            <th>Identifiant du camion</th>
-            <th>Date prévue</th>
-            <th>Dernière modification</th>
-          </tr>
-          <tr ng-repeat="tr in trajets">
-            <td><a href="#/trajet/{{tr[0]}}">Ouvrir</a></td>
-            <td>{{tr[4]}}</td>
-            <td>{{tr[1]}}</td>
-            <td>{{tr[2]}}</td>
-          </tr>
-        </table>
-      </div>
-    </div>
-  </section>
+    </section>
+  </div>
 </div>

@@ -22,7 +22,7 @@ var app = angular
   }])
   .config(function ($routeProvider) {
     $routeProvider
-      .when('/login', {
+      .when('/', {
         templateUrl: 'views/login.html'
       })
       .when('/registration', {
@@ -35,6 +35,6 @@ var app = angular
         templateUrl: 'views/trajet.html'
       })
       .otherwise({
-        templateUrl: 'views/login.html'
+        templateUrl: '404.html'
       });
   });
