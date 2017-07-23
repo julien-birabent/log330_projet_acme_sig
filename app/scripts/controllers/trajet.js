@@ -17,7 +17,29 @@ angular.module('log330ProjetAcmeSigApp')
 
     session.isAuthentified();
 
-    $scope.points = "[[0,0],[1,1]]";
+    var data = {
+      "trajetId": $routeParams.trajetId
+    };
+
+    $http.post("scripts/getOneTrajet.php", data)
+      .then(function(response) {
+        $scope.camionId = response.data[0][2];
+        $scope.datePrevue = response.data[0][0];
+        $scope.dateDerniereEdition = response.data[0][1];
+        $scope.ligne = response.data[0][3];
+
+        if ($scope.ligne.length < 2) {
+          $scope.saveValid = true;
+        }
+      });
+
+    $scope.changeSaveBtnStatus = function() {
+      if ($scope.ligne.length < 2) {
+        $scope.saveValid = true;
+      } else {
+        $scope.saveValid = false;
+      }
+    }
 
     $scope.saveTrajet = function() {
       var data = {
@@ -35,4 +57,6 @@ angular.module('log330ProjetAcmeSigApp')
           }
         });
     };
+
+    googleMapsScript();
   });

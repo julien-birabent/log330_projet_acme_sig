@@ -1,0 +1,55 @@
+#right-panel {
+  font-family: 'Roboto','sans-serif';
+  line-height: 30px;
+  padding-left: 10px;
+}
+
+#right-panel select, #right-panel input {
+  font-size: 15px;
+}
+
+#right-panel select {
+  width: 100%;
+}
+
+#right-panel i {
+  font-size: 12px;
+}
+html, body, #googleMapsDiv, .container, .container .ng-scope {
+  height: 100%;
+}
+#map {
+  height: 100%;
+  float: left;
+  width: 70%;
+  height: 100%;
+}
+#right-panel {
+  margin: 20px;
+  border-width: 2px;
+  width: 20%;
+  float: left;
+  text-align: left;
+  padding-top: 0;
+}
+#directions-panel {
+  margin-top: 10px;
+  background-color: #FFEE77;
+  padding: 10px;
+  overflow: scroll;
+  height: 174px;
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #bottom-panel * {
+    visibility: visible;
+  }
+  #bottom-panel {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+}

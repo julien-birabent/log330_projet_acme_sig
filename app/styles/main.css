@@ -1,7 +1,15 @@
 /* Pas par défaut */
+body {
+  background-color: #f0f8ff;
+}
+
+#trajets, fieldset {
+  background-color: white;
+}
+
 .container {
-  width:95%;
-  margin: 0 auto;
+  width:90%;
+  margin: 30px auto;
 }
 
 form {
@@ -35,6 +43,18 @@ td {
 
 #deconnect {
   text-align: right;
+}
+
+#retourEnArriere {
+  margin-bottom: 30px;
+}
+
+#compte, .espace {
+  margin-bottom: 50px;
+}
+
+.clear {
+  clear: both;
 }
 
 

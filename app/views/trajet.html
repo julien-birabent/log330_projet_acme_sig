@@ -1,9 +1,61 @@
-<div ng-controller="trajetCtrl">
+<div ng-controller="trajetCtrl" onload="googleMapsScript()">
   <div id="deconnect">
     <a href="#/">Se déconnecter</a>
   </div>
-  <div>
-    <input type="button" value="Sauvegarder projet" ng-click="saveTrajet()" />
+  <div id="retourEnArriere">
+    <a href="#/account">Retourer à la sélection des trajets</a>
   </div>
-</div>
 
+  <div>
+    <p>Id du camion : {{camionId}}</p>
+    <p>Date prévue : {{datePrevue}}</p>
+    <p>Date de la dernière mdification : {{dateDerniereEdition}}</p>
+    <!--
+    <p>Ligne : {{ligne}}</p>
+    <input type="button" value="Cliquer" onclick="console.log(adresses)">
+    -->
+  </div>
+
+  <div id="googleMapsDiv">
+    <div id="map"></div>
+    <div id="right-panel">
+      <div>
+        <b>Entrer Adresses:</b><br>
+        Adresse:<br>
+        <input type="text" id="adresse" value="Halifax, NS">
+        <br>
+        Temps estimé:<br>
+        <input type="text" id="temps_estime" value="Ville de Québec">
+        <br>
+        Article:<br>
+        <input type="text" id="article" value="Maine, United States">
+        <br>
+        <input type="button" value="Submit Adresse" onclick="displayAdresses()">
+        <br>
+        <b>Trajet:</b><br>
+        <div id="list_adresses"><ul></ul></div>
+        <br>
+        <b>Waypoints:</b><br>
+        <div id="list_subadresses"><ul></ul></div>
+        <br>
+        <input id="saveBtn" type="button" value="Sauvegarder le trajet" ng-disabled="saveValid" ng-click="saveTrajet()" />
+        <br>
+        <input type="submit" id="submit">
+        <br>
+        <div id="directions-panel"></div>
+      </div>
+
+      <div id="bottom-panel">
+        <b>Directions:</b><br>
+        <input type="button" value="Print" onclick="window.print()">
+      </div>
+
+      <!-- GOOGLE API KEY -->
+      <script
+              src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDT33YYFTOy_H85YMWd_3IBl3oPE8W5UKY&callback=initMap">
+      </script>
+    </div>
+  </div>
+  <div class="clear"></div>
+  <div class="espace"></div>
+</div>
