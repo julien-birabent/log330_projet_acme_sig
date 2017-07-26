@@ -2,23 +2,32 @@ var adresses = [];
 
 function displayAdresses()
 {
-  var nouvelleAdresse = document.getElementById("adresse").value;
-  if (nouvelleAdresse == "" || nouvelleAdresse.length == 0)
+  var adresse = document.getElementById("adresse").value;
+  var temps_estime = document.getElementById("temps_estime").value;
+  var article = document.getElementById("article").value;
+
+  if (adresse == "" || adresse.length == 0 || temps_estime == "" || temps_estime.length == 0
+  || article == "" || article.length == 0)
   {
     return false; //stop the function since the value is empty.
   }
+
   adresses.push({
-    location: nouvelleAdresse,
+    location: adresse,
+    temps_estime: temps_estime,
+    article: article,
     stopover: true
   });
   refreshListAdresses();
 }
 
 function refreshListAdresses(){
-  document.getElementById("list_adresses").children[0].innerHTML += "<li>"+adresses[adresses.length-1].location+"</li>";
+  var liste = document.getElementById("list_adresses").children[0];
+  var livraison = adresses[adresses.length-1];
+  liste.innerHTML += "<li>" + livraison.location + " / " + livraison.temps_estime + " / " + livraison.article + "</li>";
 
-  var subadresses = adresses.slice(1, adresses.length-1);
-  document.getElementById("list_subadresses").children[0].innerHTML += "<li>"+subadresses[subadresses.length-1].location+"</li>";
+  //var subadresses = adresses.slice(1, adresses.length-1);
+  //document.getElementById("list_subadresses").children[0].innerHTML += "<li>"+subadresses[subadresses.length-1].location+"</li>";
 }
 
 function initMap() {
@@ -65,9 +74,6 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay) {
 }
 
 function googleMapsScript() {
-  var script = document.createElement('script');
-  script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDT33YYFTOy_H85YMWd_3IBl3oPE8W5UKY&callback=initMap';
-  script.type = 'text/javascript';
-  var head = document.getElementsByTagName("head")[0];
-  head.appendChild(script);
+  initMap();
+  adresses = new Array();
 }

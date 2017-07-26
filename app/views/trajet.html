@@ -20,40 +20,42 @@
     <div id="map"></div>
     <div id="right-panel">
       <div>
-        <b>Entrer Adresses:</b><br>
-        Adresse:<br>
-        <input type="text" id="adresse" value="Halifax, NS">
+        <b>Entrer la livraison:</b><br>
+        Adresse :<br>
+        <input type="text" id="adresse" value="Halifax, NS" ng-model="adresse">
         <br>
-        Temps estimé:<br>
-        <input type="text" id="temps_estime" value="Ville de Québec">
+        Temps estimé (min) :<br>
+        <input type="text" id="temps_estime" ng-model="temps_estime">
         <br>
-        Article:<br>
-        <input type="text" id="article" value="Maine, United States">
+        Nom de l'article:<br>
+        <input type="text" id="article" ng-model="article">
         <br>
-        <input type="button" value="Submit Adresse" onclick="displayAdresses()">
+        <input type="button" value="Ajouter livraison" onclick="displayAdresses()">
         <br>
-        <b>Trajet:</b><br>
+        <b>Trajet :</b><br>
         <div id="list_adresses"><ul></ul></div>
         <br>
+        <!--
         <b>Waypoints:</b><br>
         <div id="list_subadresses"><ul></ul></div>
         <br>
-        <input id="saveBtn" type="button" value="Sauvegarder le trajet" ng-disabled="saveValid" ng-click="saveTrajet()" />
+        -->
+        <!--
+        <input id="saveBtn" type="button" value="Sauvegarder trajet" ng-disabled="saveValid" ng-click="saveTrajet()" />
+        -->
+        <input id="saveBtn" type="button" value="Sauvegarder trajet" ng-click="saveTrajet()" />
         <br>
-        <input type="submit" id="submit">
+        <input type="submit" id="submit" value="Générer trajet">
         <br>
         <div id="directions-panel"></div>
       </div>
 
       <div id="bottom-panel">
         <b>Directions:</b><br>
-        <input type="button" value="Print" onclick="window.print()">
+        <input type="button" value="Imprimer instructions" onclick="window.print()">
       </div>
 
-      <!-- GOOGLE API KEY -->
-      <script
-              src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDT33YYFTOy_H85YMWd_3IBl3oPE8W5UKY&callback=initMap">
-      </script>
+
     </div>
   </div>
   <div class="clear"></div>

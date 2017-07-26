@@ -17,6 +17,8 @@ angular.module('log330ProjetAcmeSigApp')
 
     session.isAuthentified();
 
+    $scope.adresse = "Montréal, MTL";
+
     var data = {
       "trajetId": $routeParams.trajetId
     };
@@ -44,13 +46,17 @@ angular.module('log330ProjetAcmeSigApp')
     $scope.saveTrajet = function() {
       var data = {
         "trajetId": $routeParams.trajetId,
-        "points": $scope.points
+        "livraisons": adresses,
+        "points": "0 0,1 1"
       };
+
+      console.log(data);
 
       $http.post("scripts/saveTrajet.php", data)
         .then(function(response) {
           if (response.data != "false") {
             alert("Le trajet a été sauvegardé");
+            console.log(response.data);
           } else {
             $scope.error = "Une erreur s'est produite lors de la sauvegarde du trajet!";
             $scope.fieldsError = true;
