@@ -33,6 +33,10 @@ angular.module('log330ProjetAcmeSigApp')
         if ($scope.ligne.length < 2) {
           $scope.saveValid = true;
         }
+
+        if (response.data[0][4].length > 0) {
+          writeLivraisons(response.data[0][4]);
+        }
       });
 
     $scope.changeSaveBtnStatus = function() {

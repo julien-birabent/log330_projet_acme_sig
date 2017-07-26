@@ -1,4 +1,5 @@
 var adresses = [];
+var index = 0;
 
 function displayAdresses()
 {
@@ -16,15 +17,19 @@ function displayAdresses()
     location: adresse,
     temps_estime: temps_estime,
     article: article,
+    id: index,
     stopover: true
   });
+
+  index++;
   refreshListAdresses();
 }
 
 function refreshListAdresses(){
   var liste = document.getElementById("list_adresses").children[0];
   var livraison = adresses[adresses.length-1];
-  liste.innerHTML += "<li>" + livraison.location + " / " + livraison.temps_estime + " / " + livraison.article + "</li>";
+  var del = " <span style='cursor: pointer' onclick='effacer(" + livraison.id + ")'><b>X</b></span>";
+  liste.innerHTML += "<li>" + livraison.location + " / " + livraison.temps_estime + " / " + livraison.article + del + "</li>";
 
   //var subadresses = adresses.slice(1, adresses.length-1);
   //document.getElementById("list_subadresses").children[0].innerHTML += "<li>"+subadresses[subadresses.length-1].location+"</li>";
@@ -76,4 +81,42 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay) {
 function googleMapsScript() {
   initMap();
   adresses = new Array();
+  index = 0;
+}
+
+function writeLivraisons(livraisons) {
+  adresses = new Array();
+  index = 0;
+
+  for (var i = 0; i < livraisons.length; i++) {
+    adresses.push({
+      location: livraisons[i][0],
+      temps_estime: livraisons[i][1],
+      article: livraisons[i][2],
+      id: index,
+      stopover: true
+    });
+
+    index++;
+    refreshListAdresses();
+  }
+
+  document.getElementById('submit').click();
+}
+
+function effacer(id) {
+  console.log(adresses);
+  adresses.shift(id, 1);
+  console.log(adresses);
+
+  var liste = document.getElementById("list_adresses").children[0];
+  liste.innerHTML = "";
+
+  for (var i = adresses.length - 1; i >= 0; i--) {
+    var livraison = adresses[i];
+    console.log(livraison);
+    if (livraison == undefined) continue;
+    var del = " <span style='cursor: pointer' onclick='effacer(" + livraison.id + ")'><b>X</b></span>";
+    liste.innerHTML += "<li>" + livraison.location + " / " + livraison.temps_estime + " / " + livraison.article + del + "</li>";
+  }
 }

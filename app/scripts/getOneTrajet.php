@@ -32,5 +32,18 @@
     $rangees[0][3] = array();
   }
 
+  $query = "
+      SELECT \"adresse\", \"temps_estime\", \"article\"
+      FROM livraison
+      WHERE trajet_id = '".$trajetId."'
+    ";
+
+  $result = pg_query($connection, $query);
+  $rangees[0][4] = array();
+
+  while($r = pg_fetch_row($result)) {
+        $rangees[0][4][] = $r;
+  }
+
   echo json_encode($rangees);
 ?>
