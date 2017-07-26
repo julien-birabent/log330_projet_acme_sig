@@ -50,7 +50,7 @@ angular.module('log330ProjetAcmeSigApp')
     $scope.saveTrajet = function() {
       var data = {
         "trajetId": $routeParams.trajetId,
-        "livraisons": adresses,
+        "livraisons": adresses2,
         "points": "0 0,1 1"
       };
 

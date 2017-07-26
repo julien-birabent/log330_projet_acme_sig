@@ -1,4 +1,5 @@
 var adresses = [];
+var adresses2 = [];
 var index = 0;
 
 function displayAdresses()
@@ -13,12 +14,16 @@ function displayAdresses()
     return false; //stop the function since the value is empty.
   }
 
-  adresses.push({
+  adresses2.push({
     location: adresse,
     temps_estime: temps_estime,
     article: article,
     id: index,
     stopover: true
+  });
+
+  adresses.push({
+    location: adresse
   });
 
   index++;
@@ -27,7 +32,7 @@ function displayAdresses()
 
 function refreshListAdresses(){
   var liste = document.getElementById("list_adresses").children[0];
-  var livraison = adresses[adresses.length-1];
+  var livraison = adresses2[adresses2.length-1];
   var del = " <span style='cursor: pointer' onclick='effacer(" + livraison.id + ")'><b>X</b></span>";
   liste.innerHTML += "<li>" + livraison.location + " / " + livraison.temps_estime + " / " + livraison.article + del + "</li>";
 
@@ -81,20 +86,27 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay) {
 function googleMapsScript() {
   initMap();
   adresses = new Array();
+  adresses2 = new Array();
+
   index = 0;
 }
 
 function writeLivraisons(livraisons) {
   adresses = new Array();
+  adresses2 = new Array();
   index = 0;
 
   for (var i = 0; i < livraisons.length; i++) {
-    adresses.push({
+    adresses2.push({
       location: livraisons[i][0],
       temps_estime: livraisons[i][1],
       article: livraisons[i][2],
       id: index,
       stopover: true
+    });
+
+    adresses.push({
+      location: livraisons[i][0]
     });
 
     index++;
@@ -105,18 +117,24 @@ function writeLivraisons(livraisons) {
 }
 
 function effacer(id) {
-  console.log(adresses);
-  adresses.shift(id, 1);
-  console.log(adresses);
+  console.log(id);
+  console.log(adresses2);
+  adresses2 = adresses2.slice(0, id).concat(adresses2.slice(id + 1));
+  adresses = adresses.slice(0, id).concat(adresses.slice(id + 1));
+  console.log(adresses2);
 
   var liste = document.getElementById("list_adresses").children[0];
   liste.innerHTML = "";
+  //var liste2 = document.getElementById("list_subadresses").children[0];
+  //liste2.innerHTML = "";
 
-  for (var i = adresses.length - 1; i >= 0; i--) {
-    var livraison = adresses[i];
-    console.log(livraison);
+  for (var i = 0; i < adresses2.length; i++) {
+    var livraison = adresses2[i];
     if (livraison == undefined) continue;
     var del = " <span style='cursor: pointer' onclick='effacer(" + livraison.id + ")'><b>X</b></span>";
     liste.innerHTML += "<li>" + livraison.location + " / " + livraison.temps_estime + " / " + livraison.article + del + "</li>";
+
+    //var subadresses = adresses[i];
+    //liste2.innerHTML += "<li>"+livraison.location+"</li>";
   }
 }
