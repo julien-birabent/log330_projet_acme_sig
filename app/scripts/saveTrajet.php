@@ -4,8 +4,6 @@
   $postData = json_decode(file_get_contents("php://input"));
   $trajetId = $postData->trajetId;
   $livraisons = $postData->livraisons;
-  $points = $postData->points;
-  $ligne = "LINESTRING(" . $points . ")";
 
   $query = "
       DELETE FROM livraison
@@ -14,7 +12,9 @@
 
   $result = pg_query($connection, $query);
 
+  $points = array();
   foreach ($livraisons as $li) {
+      array_push($points, $li->point);
       $temps_estime = $li->temps_estime;
       $adresse = $li->location;
       $article = $li->article;
@@ -26,23 +26,7 @@
       $result = pg_query($connection, $query);
   }
 
-  // $ligne = "LINESTRING(" . implode(",", $points) . ")";
-
-  //$livraisons = array();
-  //$livraisons["points"] =
-
-  /*
-  $pointsStr = array();
-  foreach(json_decode($livraisons->points) as $pt) {
-      $pointsStr[] = $pt[0] . " " . $pt[1];
-  }
-  $ligne = "LINESTRING(" . implode(",", $pointsStr) . ")";
-
-  $query = "
-      UPDATE trajet SET (\"dateDerniereEdition\", \"ligne\") = (NOW(), '". $ligne ."')
-      WHERE id = ".$trajetId."
-    ";
-  */
+  $ligne = "LINESTRING(" . implode(",", $points) . ")";
 
   $query = "
     UPDATE trajet SET (\"dateDerniereEdition\", \"ligne\") = (NOW(), '". $ligne ."')

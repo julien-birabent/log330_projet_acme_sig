@@ -28,30 +28,23 @@ angular.module('log330ProjetAcmeSigApp')
         $scope.camionId = response.data[0][2];
         $scope.datePrevue = response.data[0][0];
         $scope.dateDerniereEdition = response.data[0][1];
-        $scope.ligne = response.data[0][3];
 
-        if ($scope.ligne.length < 2) {
-          $scope.saveValid = true;
-        }
-
+        console.log(response.data[0][4]);
         if (response.data[0][4].length > 0) {
           writeLivraisons(response.data[0][4]);
+          document.getElementById('submit').click();
         }
       });
 
-    $scope.changeSaveBtnStatus = function() {
-      if ($scope.ligne.length < 2) {
-        $scope.saveValid = true;
-      } else {
-        $scope.saveValid = false;
-      }
-    }
-
     $scope.saveTrajet = function() {
+      if (adresses2.length < 2) {
+        alert("Il faut au moins deux coordonnées!");
+        return;
+      }
+
       var data = {
         "trajetId": $routeParams.trajetId,
-        "livraisons": adresses2,
-        "points": "0 0,1 1"
+        "livraisons": adresses2
       };
 
       console.log(data);

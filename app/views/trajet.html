@@ -30,7 +30,7 @@
         Nom de l'article:<br>
         <input type="text" id="article" ng-model="article">
         <br>
-        <input type="button" value="Ajouter livraison" onclick="displayAdresses()">
+        <input type="button" value="Ajouter livraison" onclick="ajouterAdresses()">
         <br>
         <b>Trajet :</b><br>
         <div id="list_adresses"><ul></ul></div>
@@ -40,14 +40,20 @@
         <div id="list_subadresses"><ul></ul></div>
         <br>
         -->
-        <!--
-        <input id="saveBtn" type="button" value="Sauvegarder trajet" ng-disabled="saveValid" ng-click="saveTrajet()" />
-        -->
-        <input id="saveBtn" type="button" value="Sauvegarder trajet" ng-click="saveTrajet()" />
-        <br>
         <input type="submit" id="submit" value="Générer trajet">
         <br>
+        <input id="saveBtn" type="button" value="Sauvegarder trajet" ng-click="saveTrajet()" />
+        <br>
         <div id="directions-panel"></div>
+      </div>
+
+      <div>
+        <b>Statistiques :</b><br>
+        Durée totale : <span id="dureeTotale"></span><br>
+        Nombre d'arrêts : <span id="nbArrets"></span><br>
+        Temps d'arrêt : <span id="tempsArrets"></span><br>
+        Elevation Chart :<br>
+        <div id="elevation_chart"></div>
       </div>
 
       <div id="bottom-panel">
